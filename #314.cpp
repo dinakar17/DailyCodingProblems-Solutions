@@ -32,7 +32,7 @@ int minBroadCastRange(vector<int> listeners, vector<int> towers)
     return minBroadCastRange;
 }
 
-// Optimization: Since both the arrays are sorted, in order to find the min distance between the listener and tower,
+// Optimization: Since the towers array is sorted, in order to find the min distance between the listener and tower,
 // we can now compare the listener with only the towers that are present to its left and right instead with all the towers.
 // (comparisons are optimized here...)
 
