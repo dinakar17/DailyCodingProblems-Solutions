@@ -13,15 +13,42 @@ For example, given the input [2, 1, 2, 3, 3, 1, 3, 5], the longest portion will 
 
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <unordered_set>
 using namespace std;
 
-int longestPortion(vector<int> arr){
-    
+int longestPath(vector<int> apples)
+{
+    int n = apples.size();
+    unordered_set<int> s;
+    int i = 0;
+    int max_path = 0, local_max_path = 0;
+    while (i < n)
+    {
+        s.insert(apples[i]);
+        if (s.size() > 2)
+        {
+            s.clear();
+            max_path = max(local_max_path, max_path);
+            local_max_path = 0;
+            i--;
+            while (apples[i] == apples[i - 1] && i >= 0)
+                i--;
+        }
+        else
+        {
+            local_max_path++;
+            i++;
+        }
+    }
+    return max(max_path, local_max_path);
 }
 
-int main(){
+int main()
+{
+    // vector<int> apples{1, 2, 2, 2, 2, 3, 3, 1, 3, 1, 5};
+    // vector<int> apples{1, 1, 2, 3, 4, 4, 3, 4, 6};
     vector<int> apples{2, 1, 2, 3, 3, 1, 3, 5};
-    longestPortion(apples);
+    cout << longestPath(apples);
     return 0;
 }
