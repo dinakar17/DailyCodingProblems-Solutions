@@ -17,6 +17,7 @@ void merge(vector<int>& left, vector<int>& right, vector<int>& nums){
 
 void mergeSort(vector<int>& nums){
     int n = nums.size();
+    // Whenever you're dealing with recursion problems, make sure to right base cases first.
     if(n <= 1) return;
     int mid = n/2;
     vector<int> left(mid, 0);
